@@ -33,7 +33,5 @@ class KompassNewsSpider(scrapy.Spider):
         resp = Selector(text=self.html)
         yield{
             'title' : resp.xpath('//h1[@class="read__title"]/text()').get(),
-            #'title' : resp.xpath('//h1[@class="read__title"]/font/font/text()').get(),
-            #'contents' : resp.xpath('//div[@class="read__content"]/p/text()').getall()
             'contents' : resp.xpath('//div[@class="read__content"]/descendant::*/text()').getall()
         }
